@@ -16,3 +16,10 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+/*
+* login
+*
+* 头部
+* 左侧导航    右侧显示内容 (router-view 二级路由)
+* */
