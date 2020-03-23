@@ -8,16 +8,16 @@
 <!--    用户头像-->
     <img class="head-img" :src="userInfo.photo?userInfo.photo : defaultImg"  alt="">
 <!--    功能键  个人中心  退出登录-->
-    <el-dropdown trigger="click">
+    <el-dropdown trigger="click" @command="handleMenuItem">
 <!--    用户名  匿名插槽-->
     <span class="el-dropdown-link">
       {{userInfo.name}}<i class="el-icon-arrow-down el-icon-s--right"></i>
     </span>
 <!--   下拉项   具名插槽-->
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>个人信息</el-dropdown-item>
-        <el-dropdown-item>git地址</el-dropdown-item>
-        <el-dropdown-item>退出</el-dropdown-item>
+        <el-dropdown-item command="account">个人信息</el-dropdown-item>
+        <el-dropdown-item command="git">git地址</el-dropdown-item>
+        <el-dropdown-item command="logout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </el-col>
@@ -34,8 +34,25 @@ export default {
     }
   },
   methods: {
-  // 获取用户信息
+    // 头部功能
+    handleMenuItem (command) {
+      if (command === 'account') {
+        // 个人中心   账户信息
+
+      } else if (command === 'git') {
+        // 跳转
+        window.location.href = 'https://github.com/zhaorq7/toutiao309.git'
+      } else {
+        // 退出
+        // 清除token
+        window.localStorage.clear()
+        this.$router.push('/login')
+      }
+    },
+    // 获取用户信息
     getUserInfo () {
+      // axios.config.js 整合了
+      // const token = window.localStorage.getItem('user-token')
       this.$axios({
         url: '/user/profile'
       }).then(result => {
