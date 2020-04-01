@@ -27,6 +27,15 @@ export default new Router({
         {
           path: '',
           component: Main
+        }, {
+        // 引发 :展示当前位置   面包屑
+          path: 'comment',
+          // 返回 Promise 的函数
+          // ()=> import('./views/comment')
+          component: () => import('./views/comment')
+        }, {
+          path: 'material',
+          component: () => import('./views/material')
         }
       ]
     }

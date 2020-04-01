@@ -80,14 +80,9 @@ export default {
             data: this.loginForm
           }).then(result => { // 请求成功后 , 提示登陆成功 并跳转  token
             console.log(result)
-            window.localStorage.setItem('user-token', result.data.data.token)
+            window.localStorage.setItem('user-token', result.data.token)
             // 编程式导航
             this.$router.push('/')
-          }).catch(() => {
-            this.$message({
-              message: '手机号或验证码错误',
-              type: 'warning'
-            })
           })
         }
       })

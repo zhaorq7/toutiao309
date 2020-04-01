@@ -4,7 +4,7 @@
     <img src="../../assets/logo_admin.png" alt="">
   </div>
 <!--  element-ui   el-menu-->
-  <el-menu background-color="#323745" text-color="#adafb5" active-text-color="#ffd04b">
+  <el-menu background-color="#323745" text-color="#adafb5" active-text-color="#ffd04b" router>
     <el-menu-item index="/">
       <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>
