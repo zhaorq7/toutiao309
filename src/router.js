@@ -36,6 +36,9 @@ export default new Router({
         }, {
           path: 'material',
           component: () => import('./views/material')
+        }, {
+          path: 'account',
+          component: () => import('./views/account')
         }
       ]
     }

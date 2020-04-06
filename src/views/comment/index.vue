@@ -1,5 +1,6 @@
 <template>
-  <el-card>
+  <el-card v-loading="loading">
+<!--    loading 加载效果  el UI -->
     <bread-crumb slot="header">
       <template slot="title">评论列表</template>
     </bread-crumb>
@@ -31,6 +32,7 @@
 export default {
   data () {
     return {
+      loading: false,
       list: [
         {
           title: '',
@@ -76,6 +78,7 @@ export default {
       this.getComments()
     },
     getComments () {
+      this.loading = true
       this.$axios({
         url: '/comments',
         params: {
@@ -88,6 +91,7 @@ export default {
         }
       }).then(result => {
         // console.log(result.data.results)
+        this.loading = false
         this.list = result.data.results// 表格数据
         this.page.total = result.data.total_count
       })// 拿到数据 渲染上去
