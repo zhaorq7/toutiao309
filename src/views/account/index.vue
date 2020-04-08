@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import eventBus from '../../utils/events'
 export default {
   data () {
     return {
@@ -60,6 +61,7 @@ export default {
   },
   methods: {
     uploadHeadImg (params) {
+      // nprogress  第三方进度条（美化前端的页面跳转）
       this.loading = true// 显示进度
       const data = new FormData()
       data.append('photo', params.file)
@@ -71,6 +73,8 @@ export default {
         this.loading = false
         // 右上角同步  拨电话出去  ----- > 接电话
         // 重新展示
+        // eventBus：非纯父子组件关系的传值   $emit() 触发监听  仅限于当前实例 (解决：全局vue实例，eventBus)
+        eventBus.$emit('updateUserInfo') //  updateUserInfo电话号  相当于打了一个电话
         this.getUserInfo()
       })
     },
@@ -83,8 +87,8 @@ export default {
             data: this.userInfo
           }).then(() => {
             // 成功的友好提示
-
             // 右上角同步
+            eventBus.$emit('updateUserInfo')
           })
         }
       })

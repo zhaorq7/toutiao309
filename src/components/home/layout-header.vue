@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import eventBus from '../../utils/events'
 export default {
   data () {
     return {
@@ -61,6 +62,12 @@ export default {
     }
   },
   created () {
+    // $emit 触发事件 只限于当前实例
+    // $on   监听事件 ， 只限于当前实例
+    // v-on  只限于当前实例 ， 可以用在标签上 ， 可以绑定父组件方法
+    eventBus.$on('updateUserInfo', () => {
+      this.getUserInfo()
+    })
     this.getUserInfo()
   }
 }
